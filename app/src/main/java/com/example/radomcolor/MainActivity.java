@@ -1,6 +1,7 @@
 package com.example.radomcolor;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.graphics.Color;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
+import android.graphics.Color;
 
 import java.util.Random;
 
@@ -19,31 +21,21 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
 
 
-    View colorBlock;
     private float x1,x2;
     static final int MIN_DISTANCE = 150;
     TextView txv;
-
+    ConstraintLayout currentLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-         colorBlock =findViewById(R.id.colorBlock);
          txv = findViewById(R.id.txv);
+        currentLayout = findViewById(R.id.back);
+
 
     }
-    public void changeColor(View v) {
 
-
-        Random x = new Random();
-        int red = x.nextInt(256);
-        int green = x.nextInt(256);
-        int blue = x.nextInt(256);
-
-
-        colorBlock .setBackgroundColor(Color.rgb(red,green,blue));
-    }
 
     @Override
     public boolean onTouchEvent(MotionEvent event)
@@ -67,15 +59,14 @@ public class MainActivity extends AppCompatActivity {
                         int green = x.nextInt(256);
                         int blue = x.nextInt(256);
 
-                        colorBlock .setBackgroundColor(Color.rgb(red,green,blue));
+                        currentLayout.setBackgroundColor(Color.rgb(red,green,blue));
 
-                        txv.setText("L to R");
+                        txv.setText("右移");
                     }
 
-                    // Right to left swipe action
                     else
                     {
-                        txv.setText("R to L");
+                        txv.setText("左移");
                         Random x = new Random();
                         int red = x.nextInt(256);
                         int green = x.nextInt(256);
